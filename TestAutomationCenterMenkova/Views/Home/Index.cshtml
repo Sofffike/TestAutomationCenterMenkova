@@ -1,0 +1,66 @@
+﻿@model IEnumerable<TestAutomationCenterMenkova.Models.User>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+ 
+<html>
+    <head>
+        <title>Пользователи</title>
+    </head>
+
+<style> 
+table.example{
+border-collapse: collapse;
+}
+table.example td{
+border:1px solid;
+}
+</style>
+
+      <div>
+        <h3>Внести пользователя</h3>
+            <fieldset>
+         <legend >Для создания пользователя заполните следующие поля: </legend>
+        <form method="post">      
+           <table>
+                <tr>
+                    <td>Имя пользователя:</td>
+                    <td><input type="text" required id="Name" name="Name"/> </td>
+                </tr>
+                <tr>
+                    <td>Логин:</td>
+                    <td><input type="text" required id="Login" name="Login" /></td>
+                </tr>
+                <tr>
+                    <td>Пароль:</td>
+                    <td><input type="password" required id="Password" name="Password" /></td>
+                </tr>               
+                <tr><td><input type="submit" value="Добавить" /> </td><td></td></tr>
+            </table>
+        </form>
+         </fieldset>
+    </div>      
+    <body>
+    <h3>Пользователи</h3>
+    <table  width="850" class="example">
+        <tr> <th>
+            <td>Имя</td>
+            <td>Логин</td>
+            <td>Пароль</td>
+            <td>Ссылка на чат от данной роли</td>
+            </th>
+        </tr>
+        @foreach (var user in Model)
+            {
+            <tr> <th>
+                <td>@user.Name</td>
+                <td>@user.Login</td>
+                <td>@user.Password</td>
+                <td><a href="~/Home/Chat/@user.Id">Перейти к чату</a></td>
+         </th>  </tr>
+        }
+    </table>
+</body>
+</html>

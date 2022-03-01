@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TestAutomationCenterMenkova.Models.Chat> 
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Чат с пользователями</title>
+</head>
+
+<body>
+    <div>
+         <p><a href="~/Home/Index/0">Главная</a></p>
+        <fieldset>
+        <legend>Для того, чтобы написать в чат заполните поле:</legend>      
+        <form method="post">
+           <input type="hidden" value="@ViewBag.UserId" name="UserId" />
+           <table>
+                <tr>
+                    <td>Пользователь:</td>          
+       <td><input type="text" required id="UserName" name="UserName"/> </td>
+
+    @*@Html.DropDownList("UsersName", @ViewBag.UsersName as List<SelectListItem>/*, "Select UsersName"*/,new { @class = "form-control"})*@
+                </tr>
+                <tr>
+                    <td>Текст сообщения:</td>
+                    <td><textarea name="Message"  required id="Message" placeholder="Не более 200 символов" maxlength="200" style="width:300px; height:150px;"></textarea><td/>
+                </tr>              
+               <tr><td><input type="submit" value="Отправить" @*id="but"*@ /> </td><td>                 
+               </td></tr>
+            </table>
+        </form>    
+         </fieldset>
+    </div>       
+    <h3>Мессенджер:</h3>
+   <table width="600" @*style="border: 2px dotted"*@ frame="box">   
+        @foreach (var chat in Model)
+            {
+            <tr>
+                <td>@chat.UserName</td>
+                <td>@chat.Time</td>
+                <td> : </td>
+                <td>@chat.Message</td>            
+            </tr>
+        }       
+    </table>
+</body>
+@*<script>
+    var but = document.getElementById('but');
+
+    but.onclick = function () {
+    but.style.display = "none";
+    var check = "true"; 
+    }
+</script>*@
+</html>
+
